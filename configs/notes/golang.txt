@@ -1,0 +1,6 @@
+## GOLANG
+build golang scripts for specify architecture:
+    env GOOS=target-OS GOARCH=target-architecture go build package-import-path
+
+    env GOOS=windows GOARCH=amd64 go build package-import-path
+

@@ -1,0 +1,14 @@
+alias ..='cd ..'
+alias notes='cat ~/notes.txt'
+alias python='python3'
+alias nv='nvim'
+alias please='sudo -E '
+alias bat="batcat"
+alias codium="code"
+# windows alias
+alias explorer='explorer.exe'
+alias npp='notepad++.exe'
+alias clip="clip.exe"
+# docker alias
+alias dcc="docker container prune -f; docker network prune -f; docker volume prune -f"
+alias dcl="docker logs -f --since 0m"

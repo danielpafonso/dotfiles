@@ -1,0 +1,6 @@
+## Process and Ports
+Find process that are using ports
+    lsof -ti:<port>
+List process by PID
+    ps -p <PID>
+

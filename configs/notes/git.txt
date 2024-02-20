@@ -1,0 +1,4 @@
+## GitHub
+Clone with specific ssh key
+    GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i ~/.ssh/SSHKEY' git clone ...
+

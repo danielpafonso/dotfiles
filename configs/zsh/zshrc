@@ -1,0 +1,110 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/home/dfafonso/.oh-my-zsh"
+
+# Set name of the theme to load 
+ZSH_THEME="agnoster-wsl"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+DISABLE_AUTO_TITLE="true"
+
+# Which plugins would you like to load?
+plugins=(
+	git
+	timer
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# Turn off all beeps
+unsetopt BEEP
+# Turn off shared history
+unsetopt share_history
+
+# do not bell on tab-completion
+set bell-style none
+
+# Ignore commands if prefixed with space
+setopt HIST_IGNORE_SPACE
+
+## plugin timer configs
+# number of decimal places (default `1`)
+export TIMER_PRECISION=2
+# display format (default `'/%d'`)
+export TIMER_FORMAT='[%d]'
+# minimum execution time that causes the timer to be shown (default `0`)
+export TIMER_THRESHOLD=0.5
+
+
+# User configuration
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/.local/bin
+umask 022
+
+# activate GPG to use on git
+export GPG_TTY=$(tty)
+
+alias ..='cd ..'
+alias notes='cat ~/notes.txt'
+alias isodate='date -u +"%FT%T.%3NZ"'
+alias clip='xclip -selection c'
+alias explorer='explorer.exe'
+alias notepad='notepad++.exe'
+alias npp='notepad++.exe'
+# linux alias
+alias nv='nvim'
+alias python='python3'
+alias codium='code'
+alias bat='batcat'
+#alias sudo="sudo "
+alias kbc='kubectl -n overseer get pods | grep ContainerCreating| cut -d " " -f 1 | xargs -i kubectl -n overseer delete pod {}'
+# docker alias
+alias dcc="docker container prune -f; docker network prune -f; docker volume prune -f"
+alias dcl="docker logs -f --since 0m"
+# SA terraform auth
+alias gcpauth="source ~/google/select-sa"
+
+# toggle kubectl prompt function
+function kprompt(){
+	if [[ $KUBE_PROMPT ]]; then
+		unset KUBE_PROMPT
+	else
+		export KUBE_PROMPT=true
+	fi
+}
+
+# toggle gcloud prompt function
+function gprompt(){
+	if [[ $GCLOUD_PROMPT ]]; then
+		unset GCLOUD_PROMPT
+	else
+		export GCLOUD_PROMPT=true
+	fi
+}
+
+# toggle azure prompt function
+function aprompt(){
+	if [[ $AZURE_PROMPT ]]; then
+		unset AZURE_PROMPT
+	else
+		export AZURE_PROMPT=true
+	fi
+}
+
+# toggle terminal prompt size function
+function tps(){
+	if [[ $TOOGLE_PROMPT ]]; then
+		unset TOOGLE_PROMPT
+	else
+		export TOOGLE_PROMPT=true
+	fi
+}
