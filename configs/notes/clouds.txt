@@ -1,0 +1,12 @@
+## gcloud login
+gcloud auth login --no-launch-browser
+gcloud auth application-default login --no-launch-browser
+
+## azure 
+Login
+    az login --use-device-code
+List subcriptions
+    az account list --output table
+Set subscription
+    az account set -s "NAME"
+

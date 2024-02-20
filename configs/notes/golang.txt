@@ -4,3 +4,6 @@ build golang scripts for specify architecture:
 
     env GOOS=windows GOARCH=amd64 go build package-import-path
 
+build golang scripts removing debug flags:
+    go build -trimpath -a -ldflags '-w -s' -o output script.go
+

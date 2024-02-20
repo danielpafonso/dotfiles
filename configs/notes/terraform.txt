@@ -1,0 +1,7 @@
+## Terraform
+terraform destroy -target=<resource>
+
+terraform plan -out plan.tfplan -target=<resource>
+
+terraform apply plan.tfplan
+
