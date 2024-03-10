@@ -4,5 +4,11 @@ Collection of configurations
 
 ## Setup
 
-## More info
+Run the following commands to run the installations script
+```
+git clone git@github.com:danielpafonso/dotfiles.git
+cd dotfiles
+sh install-dotfiles.sh
+```
 
+## More info
