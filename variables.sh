@@ -1,21 +1,26 @@
 ## Install Config/Variables
+# *_PATH   -> Path to "install" configuration
+# *_CONFIG -> Path to repo path
 
 # zshrc  
 ZSH_INSTALL=" "
 ZSH_PATH="$HOME/.zshrc"
-ZSH_CONFIG="$PWD/configs/zsh/zshr"
+ZSH_CONFIG="$PWD/configs/zsh/zshrc"
 
 # zsh custom theme
 ZSH_THEME_INSTALL=" "
 ZSH_THEME_PATH="$HOME/.oh-my-zsh/custom/themes/agnoster-wsl.zsh-theme"
 ZSH_THEME_CONFIG="$PWD/configs/zsh/agnoster-wsl.zsh-theme"
 
-# Neovim (Plugvim)
+# Neovim (VimPlug)
 NVIM_INSTALL=" "
-#NVIM_PATH="$HOME/.config/nvim/init.vim"
-NVIM_PATH="$HOME/test.vim"
-NVIM_CONFIG="$PWD/configs/neovim/init.vim"
+NVIM_PATH="$HOME/.config/nvim/init.vim"
+NVIM_CONFIG="$PWD/configs/neovim/vim-plug/init.vim"
 
+# Neovim (Kickstart)
+NVIM_KICKSTART_INSTALL="*"
+NVIM_KICKSTART_PATH="$HOME/.config/nvim"
+NVIM_KICKSTART_CONFIG="$PWD/configs/neovim/kickstart"
 
 # bash
 BASHRC_INSTALL=" "
@@ -25,7 +30,7 @@ BASHRC_CONFIG="$PWD/configs/bash/bashrc"
 # bash aliases
 BASH_ALIASES_INSTALL=" "
 BASH_ALIASES_PATH="$HOME/.bash_aliases"
-BASH_ALIASES_CONFIG="$PWD/configs/bash/bashrc_aliases"
+BASH_ALIASES_CONFIG="$PWD/configs/bash/bash_aliases"
 
 ## Notes
 NOTES_ALL_INSTALL=" "
