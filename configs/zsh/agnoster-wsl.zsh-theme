@@ -120,11 +120,11 @@ prompt_git() {
 
 # Dir: current working directory
 prompt_dir() {
-	if [[ $TOOGLE_PROMPT ]]; then
-		prompt_segment 033 $CURRENT_FG '%1d'
-	else		
-		prompt_segment 033 $CURRENT_FG '%~'
-	fi
+  if [[ $TOOGLE_PROMPT ]]; then
+    prompt_segment 033 $CURRENT_FG '%1d'
+  else
+    rompt_segment 033 $CURRENT_FG '%~'
+  fi
 }
 
 prompt_kube_context() {
