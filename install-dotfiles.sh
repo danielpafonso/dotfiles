@@ -112,11 +112,7 @@ EOF
 
 ## Variables to control script
 CREATE_SYMLINK=0
-if [ -z $(which tput) ];then
-	TPUT_OR_CLEAR="clear"
-else
-	TPUT_OR_CLEAR="tput"
-fi
+TPUT=$(which tput)
 
 ## load config file
 . ./variables.sh
@@ -130,17 +126,16 @@ Enter:
 EOF
 )
 
-if [ "$TPUT_OR_CLEAR" = "tput" ]; then
+if [ "$TPUT" != "" ]; then
 	# save terminal state
 	tput smcup
 fi
 
 ### Main entrypoint
 while true; do
-	if [ "$TPUT_OR_CLEAR" = "clear" ]; then
-		# clear terminal
-		clear
-	fi
+	# clear terminal
+	clear
+	echo $CREATE_SYMLINK
 	printf "%s\n\n" "$banner"
 	## Menu
 	printf "Select components to install.\n"
@@ -304,14 +299,22 @@ while true; do
 		"help"|"h")
 			logLine=$(printf "\n- Enter number to toogle config to install\n- Enter path folowed by rhe option number to modify the instalation path. ex: path 1\n ")
 			;;
+		"symlink") if [ "$CREATE_SYMLINK" -eq 0 ]; then
+				CREATE_SYMLINK=1
+				logLine=$(printf "\nInstall will create symlinks to configurations\n")
+			else
+				CREATE_SYMLINK=0
+				logLine=$(printf "\nInstall will create copy of configurations\n")
+			fi
+			;;
 		"quit"|"q") break ;;
 		7) break ;;
-		*) logLine="\033[0;31mInvalid option selected\033[0m"
+		*) logLine=$(printf "\e[0;31mInvalid option selected\e[m\n")
 			;;
 	esac
 done
 
-if [ "$TPUT_OR_CLEAR" = "tput" ]; then
+if [ "$TPUT" != "" ]; then
 	# restore terminal
 	tput rmcup
 fi

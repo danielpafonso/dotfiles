@@ -18,7 +18,7 @@ NVIM_PATH="$HOME/.config/nvim/init.vim"
 NVIM_CONFIG="$PWD/configs/neovim/vim-plug/init.vim"
 
 # Neovim (Kickstart)
-NVIM_KICKSTART_INSTALL="*"
+NVIM_KICKSTART_INSTALL=" "
 NVIM_KICKSTART_PATH="$HOME/.config/nvim"
 NVIM_KICKSTART_CONFIG="$PWD/configs/neovim/kickstart"
 
