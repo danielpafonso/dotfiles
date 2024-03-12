@@ -32,6 +32,11 @@ BASH_ALIASES_INSTALL=" "
 BASH_ALIASES_PATH="$HOME/.bash_aliases"
 BASH_ALIASES_CONFIG="$PWD/configs/bash/bash_aliases"
 
+# bash aliases
+TMUX_INSTALL=" "
+TMUX_PATH="$HOME/.tmux.conf"
+TMUX_CONFIG="$PWD/configs/tmux/tmux.conf"
+
 ## Notes
 NOTES_ALL_INSTALL=" "
 NOTES_PATH="$HOME/notes.txt"
