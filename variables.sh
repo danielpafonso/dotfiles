@@ -34,7 +34,7 @@ BASH_ALIASES_CONFIG="$PWD/configs/bash/bash_aliases"
 
 # bash aliases
 TMUX_INSTALL=" "
-TMUX_PATH="$HOME/.tmux.conf"
+TMUX_PATH="$HOME/.config/tmux/tmux.conf"
 TMUX_CONFIG="$PWD/configs/tmux/tmux.conf"
 
 ## Notes
