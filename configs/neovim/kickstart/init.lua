@@ -57,8 +57,8 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- Set White spaces display
-vim.o.tabstop = 4
-vim.o.shiftwidth = 0
+--vim.o.tabstop = 4
+--vim.o.shiftwidth = 0
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')

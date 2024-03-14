@@ -1,5 +1,8 @@
 return {
   {
+    -- Detect tabstop and shiftwidth automatically
+    'tpope/vim-sleuth',
+
     -- Git related plugins
     'tpope/vim-fugitive',
     'tpope/vim-rhubarb',
