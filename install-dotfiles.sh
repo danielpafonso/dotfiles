@@ -139,7 +139,6 @@ fi
 while true; do
 	# clear terminal
 	clear
-	echo $CREATE_SYMLINK
 	printf "%s\n\n" "$banner"
 	## Menu
 	printf "Select components to install.\n"
@@ -158,7 +157,11 @@ while true; do
 	#echo $logLine
 	logLine=" "
 
-	printf "> "
+	if [ "$CREATE_SYMLINK" -eq 0 ]; then
+		printf "> "
+	else
+		printf "\e[1;36m> \e[m"
+	fi
 	read choice
 	## operate on choice
 	case $choice in
