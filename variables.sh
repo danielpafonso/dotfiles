@@ -32,10 +32,15 @@ BASH_ALIASES_INSTALL=" "
 BASH_ALIASES_PATH="$HOME/.bash_aliases"
 BASH_ALIASES_CONFIG="$PWD/configs/bash/bash_aliases"
 
-# bash aliases
+# Tmux
 TMUX_INSTALL=" "
 TMUX_PATH="$HOME/.config/tmux/tmux.conf"
 TMUX_CONFIG="$PWD/configs/tmux/tmux.conf"
+
+# Tmux
+VIM_INSTALL=" "
+VIM_PATH="$HOME/.vimrc"
+VIM_CONFIG="$PWD/configs/vim/vimrc"
 
 ## Notes
 NOTES_ALL_INSTALL=" "
