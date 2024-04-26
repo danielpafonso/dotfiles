@@ -123,7 +123,7 @@ prompt_dir() {
   if [[ $TOOGLE_PROMPT ]]; then
     prompt_segment 033 $CURRENT_FG '%1d'
   else
-    rompt_segment 033 $CURRENT_FG '%~'
+    prompt_segment 033 $CURRENT_FG '%~'
   fi
 }
 
