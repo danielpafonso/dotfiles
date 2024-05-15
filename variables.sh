@@ -27,10 +27,10 @@ BASHRC_INSTALL=" "
 BASHRC_PATH="$HOME/.bashrc"
 BASHRC_CONFIG="$PWD/configs/bash/bashrc"
 
-# bash aliases
-BASH_ALIASES_INSTALL=" "
-BASH_ALIASES_PATH="$HOME/.bash_aliases"
-BASH_ALIASES_CONFIG="$PWD/configs/bash/bash_aliases"
+# shell aliases
+SHELL_ALIASES_INSTALL=" "
+SHELL_ALIASES_PATH="$HOME/.shell_aliases"
+SHELL_ALIASES_CONFIG="$PWD/configs/shell_aliases"
 
 # Tmux
 TMUX_INSTALL=" "
