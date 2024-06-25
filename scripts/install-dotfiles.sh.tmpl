@@ -1,0 +1,134 @@
+#!/bin/sh
+
+apply_dotfile(){
+	# $1 -> source file
+	# $2 -> destination file
+	# $3 -> folder operation
+	mkdir -p $(dirname $2)
+	if [ "$3" != "" ]; then
+		## check for folder existence
+		if [ -d "$2" ]; then
+			## check if folder is a symlink
+			if [ -L "$2" ]; then
+				rm $2
+			else
+				## backup file
+				mv $2 $2.bak
+			fi
+		fi
+	else
+		## check for file existence
+		if [ -f "$2" ]; then
+			## check if file is a symlink
+			if [ -L "$2" ]; then
+				rm $2
+			else
+				## backup file
+				mv $2 $2.bak
+			fi
+		fi
+	fi
+
+	## create symlink
+	if [ $CREATE_SYMLINK -eq 1 ]; then
+		ln -s $1 $2
+	else
+		if [ "$3" != "" ]; then
+			cp -r $1 $2
+		else
+			cp $1 $2
+		fi
+	fi
+}
+
+install_configs(){
+	{{$INSTALL}}
+	if [ "$files" != "" ]; then
+		## local file
+		mkdir -p ./local
+		cat $files > ./local/notes.txt
+		apply_dotfile "$PWD/local/notes.txt" "$NOTES_PATH"
+	fi
+}
+
+## Banner
+banner=$(cat << EOF
+  ___        _     __  _  _
+ |   \  ___ | |_  / _|(_)| | ___
+ | |) |/ _ \|  _||  _|| || |/ -_)
+ |___/ \___/ \__||_|  |_||_|\___|
+     ___            _          _  _
+    |_ _| _ _   ___| |_  __ _ | || | ___  _ _
+     | | | ' \ (_-<|  _|/ _' || || |/ -_)| '_|
+    |___||_||_|/__/ \__|\__,_||_||_|\___||_|
+EOF
+)
+
+## Variables to control script
+CREATE_SYMLINK=0
+TPUT=$(which tput)
+
+## load config file
+. ./variables.sh
+
+logLine=$(cat << EOF
+Enter:
+- install to apply changes
+- quit to exit without making changes
+- help to display the help message
+
+EOF
+)
+
+if [ "$TPUT" != "" ]; then
+	# save terminal state
+	tput smcup
+fi
+
+### Main entrypoint
+while true; do
+	# clear terminal
+	clear
+	printf "%s\n\n" "$banner"
+	## Menu
+	printf "Select components to install.\n"
+	{{$MENU}}
+	printf "%s\n" "$logLine"
+	#echo $logLine
+	logLine=" "
+
+	if [ "$CREATE_SYMLINK" -eq 0 ]; then
+		printf "> "
+	else
+		printf "\e[1;36m> \e[m"
+	fi
+	read choice
+	## operate on choice
+	case $choice in
+		{{$CHOICE}}
+
+		"install") install_configs
+			break
+			;;
+		"help"|"h")
+			logLine=$(printf "\n- Enter number to toogle config to install\n- Enter path folowed by rhe option number to modify the instalation path. ex: path 1\n ")
+			;;
+		"symlink") if [ "$CREATE_SYMLINK" -eq 0 ]; then
+				CREATE_SYMLINK=1
+				logLine=$(printf "\nInstall will create symlinks to configurations\n")
+			else
+				CREATE_SYMLINK=0
+				logLine=$(printf "\nInstall will create copy of configurations\n")
+			fi
+			;;
+		"quit"|"q") break ;;
+		9) break ;;
+		*) logLine=$(printf "\e[0;31mInvalid option selected\e[m\n")
+			;;
+	esac
+done
+
+if [ "$TPUT" != "" ]; then
+	# restore terminal
+	tput rmcup
+fi

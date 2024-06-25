@@ -1,0 +1,76 @@
+[configs.zsh]
+install_path = "$HOME/.zshrc"
+source_config = "$PWD/configs/zsh/zshrc"
+menu_entry = "zshrc file"
+prompt_path = "zsh"
+
+[configs.zsh_theme]
+install_path = "$HOME/.oh-my-zsh/custom/themes/agnoster-wsl.zsh-theme"
+source_config = "$PWD/configs/zsh/agnoster-wsl.zsh-theme"
+menu_entry = "zsh custom theme"
+prompt_path = "zsh theme"
+
+[configs.bashrc]
+install_path = "$HOME/.bashrc"
+source_config = "$PWD/configs/bash/bashrc"
+menu_entry =  "bashrc"
+prompt_path =  "bashrc"
+
+[configs.shell_aliases]
+install_path = "$HOME/.shell_aliases"
+source_config = "$PWD/configs/shell_aliases"
+menu_entry =  "shell aliases"
+prompt_path =  "shell aliases"
+
+[configs.tmux]
+install_path = "$HOME/.config/tmux/tmux.conf"
+source_config = "$PWD/configs/tmux/tmux.conf"
+menu_entry =  "tmux"
+prompt_path =  "tmux"
+
+[configs.vim]
+install_path = "$HOME/.vimrc"
+source_config = "$PWD/configs/vim/vimrc"
+menu_entry =  "vim"
+prompt_path =  "vim"
+
+[configs.nvim]
+install_path = "$HOME/.config/nvim/init.vim"
+source_config = "$PWD/configs/neovim/vim-plug/init.vim"
+menu_entry =  "Neovim, using vim-plug"
+prompt_path =  "neovim"
+
+[configs.nvim_kickstart]
+install_path = "$HOME/.config/nvim"
+source_config = "$PWD/configs/neovim/kickstart"
+menu_entry =  "Neovim, using kickstart"
+prompt_path =  "neovim"
+folder =  true
+
+
+[notes]
+install_path = "$HOME/notes.txt"
+menu_entry = "notes (all)"
+prompt_path = "notes"
+
+[notes.parts]
+golang.install_path = "$PWD/configs/notes/golang.txt"
+golang.menu_entry = "golang"
+
+git.install_path = "$PWD/configs/notes/git.txt"
+git.menu_entry = "git"
+
+process_port.install_path = "$PWD/configs/notes/process-ports.txt"
+process_port.menu_entry = "process and ports"
+
+cloud.install_path = "$PWD/configs/notes/clouds.txt"
+cloud.menu_entry = "clouds"
+
+curl.install_path = "$PWD/configs/notes/curl.txt"
+curl.menu_entry = "curl"
+
+regex.install_path = "$PWD/configs/notes/regex.txt"
+regex.menu_entry = "regex"
+
+terraform.install_path = "$PWD/configs/notes/terraform.txt"
+terraform.menu_entry = "terraform"
