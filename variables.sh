@@ -1,36 +1,48 @@
+## Install Config/Variables
+# *_PATH   -> Path to "install" configuration
+# *_CONFIG -> Path to repo path
+
+# zshrc  
 ZSH_INSTALL=" "
 ZSH_PATH="$HOME/.zshrc"
 ZSH_CONFIG="$PWD/configs/zsh/zshrc"
 
+# zsh custom theme
 ZSH_THEME_INSTALL=" "
 ZSH_THEME_PATH="$HOME/.oh-my-zsh/custom/themes/agnoster-wsl.zsh-theme"
 ZSH_THEME_CONFIG="$PWD/configs/zsh/agnoster-wsl.zsh-theme"
 
-BASHRC_INSTALL=" "
-BASHRC_PATH="$HOME/.bashrc"
-BASHRC_CONFIG="$PWD/configs/bash/bashrc"
-
-SHELL_ALIASES_INSTALL=" "
-SHELL_ALIASES_PATH="$HOME/.shell_aliases"
-SHELL_ALIASES_CONFIG="$PWD/configs/shell_aliases"
-
-TMUX_INSTALL=" "
-TMUX_PATH="$HOME/.config/tmux/tmux.conf"
-TMUX_CONFIG="$PWD/configs/tmux/tmux.conf"
-
-VIM_INSTALL=" "
-VIM_PATH="$HOME/.vimrc"
-VIM_CONFIG="$PWD/configs/vim/vimrc"
-
+# Neovim (VimPlug)
 NVIM_INSTALL=" "
 NVIM_PATH="$HOME/.config/nvim/init.vim"
 NVIM_CONFIG="$PWD/configs/neovim/vim-plug/init.vim"
 
+# Neovim (Kickstart)
 NVIM_KICKSTART_INSTALL=" "
 NVIM_KICKSTART_PATH="$HOME/.config/nvim"
 NVIM_KICKSTART_CONFIG="$PWD/configs/neovim/kickstart"
 
+# bash
+BASHRC_INSTALL=" "
+BASHRC_PATH="$HOME/.bashrc"
+BASHRC_CONFIG="$PWD/configs/bash/bashrc"
 
+# shell aliases
+SHELL_ALIASES_INSTALL=" "
+SHELL_ALIASES_PATH="$HOME/.shell_aliases"
+SHELL_ALIASES_CONFIG="$PWD/configs/shell_aliases"
+
+# Tmux
+TMUX_INSTALL=" "
+TMUX_PATH="$HOME/.config/tmux/tmux.conf"
+TMUX_CONFIG="$PWD/configs/tmux/tmux.conf"
+
+# Tmux
+VIM_INSTALL=" "
+VIM_PATH="$HOME/.vimrc"
+VIM_CONFIG="$PWD/configs/vim/vimrc"
+
+## Notes
 NOTES_ALL_INSTALL=" "
 NOTES_PATH="$HOME/notes.txt"
 NOTES_GOLANG=" "
