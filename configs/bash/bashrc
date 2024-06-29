@@ -78,11 +78,6 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 
-# Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -97,3 +92,8 @@ fi
 # User exports
 export PATH=$PATH:/usr/local/go/bin
 export GPG_TTY=$(tty)
+  
+# Alias definitions.
+if [ -f ~/.shell_aliases ]; then
+    . ~/.shell_aliases
+fi
