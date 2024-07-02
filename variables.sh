@@ -6,6 +6,10 @@ ZSH_THEME_INSTALL=" "
 ZSH_THEME_PATH="$HOME/.oh-my-zsh/custom/themes/agnoster-wsl.zsh-theme"
 ZSH_THEME_CONFIG="$PWD/configs/zsh/agnoster-wsl.zsh-theme"
 
+ZSH_PLUGIN_INSTALL=" "
+ZSH_PLUGIN_PATH="$HOME/.oh-my-zsh/custom/plugins/"
+ZSH_PLUGIN_CONFIG="$PWD/configs/zsh/plugins/git/"
+
 BASHRC_INSTALL=" "
 BASHRC_PATH="$HOME/.bashrc"
 BASHRC_CONFIG="$PWD/configs/bash/bashrc"
