@@ -54,6 +54,13 @@ menu_entry = "Neovim, using kickstart"
 prompt_path = "neovim"
 folder = true
 
+[configs.nvim_lazy]
+install_path = "$HOME/.config/lazy-nvim"
+source_config = "$PWD/configs/neovim/lazy"
+menu_entry =  "Neovim, using lazy.nvim"
+prompt_path =  "neovim"
+folder =  true
+
 
 [notes]
 install_path = "$HOME/notes.txt"
