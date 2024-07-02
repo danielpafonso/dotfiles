@@ -1,0 +1,35 @@
+name: Generate SH installations scripts
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/*"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate
+        run: |
+          python scripts/generate_shell.py
+
+      - name: Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Scripts Generation"
+          # commit_options: '--no-verify --signoff'
+          file_pattern: "*.sh"
