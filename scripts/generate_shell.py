@@ -49,25 +49,31 @@ def generate_install(configs: dict) -> None:
     for key, values in configs["configs"].items():
         up_key = key.upper()
         menu.append(
-            f'printf " {num}) [%s] {values["menu_entry"]}\\n    path: %s\\n" "${up_key}_INSTALL" "${up_key}_PATH"'
+            (
+                f'printf " {num}) [%s] {values["menu_entry"]}\\n    path: %s\\n" '
+                '"${up_key}_INSTALL" "${up_key}_PATH"'
+            )
         )
         num += 1
 
     menu.append(
-        f'printf " {num}) [%s] {configs["notes"]["menu_entry"]}\\n    path: %s\\n" "$NOTES_ALL_INSTALL" "$NOTES_PATH"'
+        (
+            f'printf " {num}) [%s] {configs["notes"]["menu_entry"]}\\n    path: %s\\n" '
+            '"$NOTES_ALL_INSTALL" "$NOTES_PATH"'
+        )
     )
     letters = "abcdefghijkmlnopqrstuvwxyz"
-    l = 0
+    i = 0
     line = []
     args = []
     for key, values in configs["notes"]["parts"].items():
-        line.append(f'{letters[l]}) [%s] {values["menu_entry"]}')
+        line.append(f'{letters[i]}) [%s] {values["menu_entry"]}')
         args.append(f'"$NOTES_{key.upper()}"')
         if len(line) == 4:
             menu.append(f'printf "  {" ".join(line)}\\n" {" ".join(args)}')
             line = []
             args = []
-        l += 1
+        i += 1
     # append remaining
     if line:
         menu.append(f'printf "  {" ".join(line)}\\n" {" ".join(args)}')
@@ -88,42 +94,48 @@ def generate_install(configs: dict) -> None:
         choice.append("\t;;")
         num += 1
 
-    notes_choice = ["NOTES_ALL_INSTALL"] + [f"NOTES_{key.upper()}" for key in configs["notes"]["parts"].keys()]
+    notes_choice = ["NOTES_ALL_INSTALL"] + [
+        f"NOTES_{key.upper()}" for key in configs["notes"]["parts"].keys()
+    ]
     notes_choice = [f"NOTES_{key.upper()}" for key in configs["notes"]["parts"].keys()]
 
-    choice.append(f"{num}) if [ \"$NOTES_ALL_INSTALL\" = \" \" ]; then")
-    choice.append("\t\tNOTES_ALL_INSTALL=\"*\"")
+    choice.append(f'{num}) if [ "$NOTES_ALL_INSTALL" = " " ]; then')
+    choice.append('\t\tNOTES_ALL_INSTALL="*"')
     for notes in notes_choice:
-        choice.append(f"\t\t{notes}=\"*\"")
+        choice.append(f'\t\t{notes}="*"')
     choice.append("\telse")
-    choice.append("\t\tNOTES_ALL_INSTALL=\" \"")
+    choice.append('\t\tNOTES_ALL_INSTALL=" "')
     for notes in notes_choice:
-        choice.append(f"\t\t{notes}=\" \"")
+        choice.append(f'\t\t{notes}=" "')
     choice.append("\tfi")
     choice.append("\t;;")
-    choice.append(f"\"path {num}\")")
+    choice.append(f'"path {num}")')
     choice.append(f"\tprintf \"\\n {configs['notes']['prompt_path']} path> \"")
     choice.append("\tread NOTES_PATH")
     choice.append("\t;;")
 
     ## notes path
-    toogle = """\tif {}; then
+    unselected = " && ".join([f'[ "${x.upper()}" = " " ]' for x in notes_choice])
+    selected = " && ".join([f'[ "${x.upper()}" = "*" ]' for x in notes_choice])
+    toogle = f"""\tif {selected}; then
 \t\t\t\tNOTES_ALL_INSTALL="*"
-\t\t\telif {}; then
+\t\t\telif {unselected}; then
 \t\t\t\tNOTES_ALL_INSTALL=" "
 \t\t\telse
 \t\t\t\tNOTES_ALL_INSTALL="-"
 \t\t\tfi
-\t\t\t;;""".format(
-    " && ".join([f"[ \"${x.upper()}\" = \"*\" ]" for x in notes_choice]),
-    " && ".join([f"[ \"${x.upper()}\" = \" \" ]" for x in notes_choice])
-)
+\t\t\t;;"""
 
-    l = 0
+    i = 0
     for key, values in configs["notes"]["parts"].items():
-        choice.append(f"\"{num}{letters[l]}\") NOTES_{key.upper()}=$([ \"$NOTES_{key.upper()}\" = \"*\" ] && echo \" \" || echo \"*\")")
+        choice.append(
+            (
+                f'"{num}{letters[i]}") NOTES_{key.upper()}=$([ "$NOTES_{key.upper()}" = "*" ] &&'
+                'echo " " || echo "*")'
+            )
+        )
         choice.append(toogle)
-        l += 1
+        i += 1
 
     template = template.replace("{{$CHOICE}}", "\n\t\t".join(choice))
 
@@ -134,15 +146,16 @@ def generate_install(configs: dict) -> None:
     apply = []
     for key, values in configs["configs"].items():
         up_key = key.upper()
-        apply.append(apply_template.format(up_key, " folder" if "folder" in values else""))
+        apply.append(
+            apply_template.format(up_key, " folder" if "folder" in values else "")
+        )
 
-    apply.append("files=\"\"")
+    apply.append('files=""')
     apply_template = """if [ "$NOTES_{0}" != " " ]; then
 \t\tfiles="${{files}} $NOTES_{0}_CONFIG"
 \tfi"""
     for key in configs["notes"]["parts"].keys():
         apply.append(apply_template.format(key.upper()))
-
 
     template = template.replace("{{$INSTALL}}", "\n\t".join(apply))
 
