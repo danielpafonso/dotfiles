@@ -1,0 +1,5 @@
+# ignore generated local files
+local/
+
+# ignore lock.json files
+*-lock.json

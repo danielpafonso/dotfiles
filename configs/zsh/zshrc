@@ -1,0 +1,92 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load
+ZSH_THEME="agnoster-wsl"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+DISABLE_AUTO_TITLE="true"
+
+# Which plugins would you like to load?
+plugins=(
+	git
+	timer
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# Turn off all beeps
+unsetopt BEEP
+# Turn off shared history
+unsetopt share_history
+
+# do not bell on tab-completion
+set bell-style none
+
+# Ignore commands if prefixed with space
+setopt HIST_IGNORE_SPACE
+
+## plugin timer configs
+# number of decimal places (default `1`)
+export TIMER_PRECISION=2
+# display format (default `'/%d'`)
+export TIMER_FORMAT='[%d]'
+# minimum execution time that causes the timer to be shown (default `0`)
+export TIMER_THRESHOLD=0.5
+
+
+# User configuration
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/.local/bin
+umask 022
+
+# activate GPG to use on git
+export GPG_TTY=$(tty)
+
+# user aliases
+if [[ -a $HOME/.shell_aliases ]]; then
+	source $HOME/.shell_aliases
+fi
+
+# toggle kubectl prompt function
+function kprompt(){
+	if [[ $KUBE_PROMPT ]]; then
+		unset KUBE_PROMPT
+	else
+		export KUBE_PROMPT=true
+	fi
+}
+
+# toggle gcloud prompt function
+function gprompt(){
+	if [[ $GCLOUD_PROMPT ]]; then
+		unset GCLOUD_PROMPT
+	else
+		export GCLOUD_PROMPT=true
+	fi
+}
+
+# toggle azure prompt function
+function aprompt(){
+	if [[ $AZURE_PROMPT ]]; then
+		unset AZURE_PROMPT
+	else
+		export AZURE_PROMPT=true
+	fi
+}
+
+# toggle terminal prompt size function
+function tps(){
+	if [[ $TOOGLE_PROMPT ]]; then
+		unset TOOGLE_PROMPT
+	else
+		export TOOGLE_PROMPT=true
+	fi
+}

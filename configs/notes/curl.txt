@@ -1,0 +1,4 @@
+## CURL
+Send querry parameters
+    curl -G "https://url.pt/endpoint" -d '$format=json' -d '$select=ProgramTitle,ChannelId' -d '$filter=ChannelId%20eq%203'
+

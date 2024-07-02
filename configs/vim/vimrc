@@ -1,0 +1,32 @@
+
+""" vim Configs
+" tabs behaviour
+set tabstop=4
+set shiftwidth=0
+" line numbers
+set number
+set relativenumber
+
+""" plugins
+call plug#begin()
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'joshdick/onedark.vim'
+call plug#end()
+
+""" Setting Color Scheme/Themes
+colo onedark
+
+""" Plugins Configuration """
+"" NERDTree
+nnoremap <leader>t :NERDTreeFocus<CR>
+nnoremap <C-c> :NERDTreeClose<CR>
+" Mirror the NERDTree before showing it. This makes it the same on all tabs.
+nnoremap <C-t> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+" Start NERDTree and leave the cursor in it.
+"autocmd VimEnter * NERDTree
+" Start NERDTree and put the cursor back in the other window.
+"autocmd VimEnter * NERDTree | wincmd p
+
+"" airline
+"let g:airline_powerline_fonts = 1

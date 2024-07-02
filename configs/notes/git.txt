@@ -1,0 +1,8 @@
+## GitHub
+Prune deleted remote branchs
+    git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
+Empty commit
+    git commit –allow-empty -m “Trigger CI/CD pipeline”
+Clone with specific ssh key
+    GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i ~/.ssh/SSHKEY' git clone ...
+

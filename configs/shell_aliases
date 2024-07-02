@@ -1,0 +1,21 @@
+# quality of life
+alias ..='cd ..'
+alias notes='cat ~/notes.txt'
+alias please='sudo -E '
+alias python='python3'
+
+# program shortcuts
+alias bat="batcat"
+alias clip='xclip -selection c'
+alias codium="code"
+alias isodate='date -u +"%FT%T.%3NZ"'
+alias nv='nvim'
+
+# windows alias
+alias explorer='explorer.exe'
+alias npp='notepad++.exe'
+alias wclip="clip.exe"
+
+# docker alias
+alias dcc="docker container prune -f; docker network prune -f; docker volume prune -f"
+alias dcl="docker logs -f --since 0m"

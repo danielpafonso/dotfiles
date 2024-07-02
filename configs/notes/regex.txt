@@ -1,0 +1,7 @@
+## Regex
+Find string that don't match
+    ^((?!foo).)*$
+
+Or operator
+    (line1|line2)
+
