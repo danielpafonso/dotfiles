@@ -1,6 +1,9 @@
 -- set netrw style to tree, use key "i" to change
 vim.cmd("let g:netrw_liststyle = 3")
 
+-- set color column on 100 for python files
+vim.cmd("autocmd FileType python set cc=100")
+
 -- for conciseness
 local opt = vim.opt
 
