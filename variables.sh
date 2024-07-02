@@ -34,6 +34,10 @@ NVIM_KICKSTART_INSTALL=" "
 NVIM_KICKSTART_PATH="$HOME/.config/nvim"
 NVIM_KICKSTART_CONFIG="$PWD/configs/neovim/kickstart"
 
+NVIM_LAZY_INSTALL=" "
+NVIM_LAZY_PATH="$HOME/.config/lazy-nvim"
+NVIM_LAZY_CONFIG="$PWD/configs/neovim/lazy"
+
 
 NOTES_ALL_INSTALL=" "
 NOTES_PATH="$HOME/notes.txt"
