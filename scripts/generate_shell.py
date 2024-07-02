@@ -1,6 +1,6 @@
 """Generate sh installation scripts"""
 
-import tomllib
+import toml as tomllib
 
 
 CONFIG_PATH = "scripts/configs.toml"
@@ -152,7 +152,7 @@ def generate_install(configs: dict) -> None:
 
 
 if __name__ == "__main__":
-    with open(CONFIG_PATH, "rb") as cfp:
+    with open(CONFIG_PATH, "r") as cfp:
         toml_configs = tomllib.load(cfp)
 
     generate_variables(toml_configs)
