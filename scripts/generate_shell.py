@@ -51,7 +51,7 @@ def generate_install(configs: dict) -> None:
         menu.append(
             (
                 f'printf " {num}) [%s] {values["menu_entry"]}\\n    path: %s\\n" '
-                '"${up_key}_INSTALL" "${up_key}_PATH"'
+                f'"${up_key}_INSTALL" "${up_key}_PATH"'
             )
         )
         num += 1
