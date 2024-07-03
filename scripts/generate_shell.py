@@ -164,7 +164,7 @@ def generate_install(configs: dict) -> None:
 
 
 if __name__ == "__main__":
-    with open(CONFIG_PATH, "rb", encoding="utf8") as cfp:
+    with open(CONFIG_PATH, "rb") as cfp:
         toml_configs = tomllib.load(cfp)
 
     generate_variables(toml_configs)
