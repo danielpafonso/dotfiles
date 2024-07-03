@@ -38,6 +38,10 @@ NVIM_LAZY_INSTALL=" "
 NVIM_LAZY_PATH="$HOME/.config/lazy-nvim"
 NVIM_LAZY_CONFIG="$PWD/configs/neovim/lazy"
 
+FASTFETCH_INSTALL=" "
+FASTFETCH_PATH="$HOME/.config/fastfetch/config.jsonc"
+FASTFETCH_CONFIG="$PWD/configs/fastfetch/config.jsonc"
+
 
 NOTES_ALL_INSTALL=" "
 NOTES_PATH="$HOME/notes.txt"
