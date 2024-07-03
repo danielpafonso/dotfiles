@@ -41,6 +41,11 @@ apply_dotfile(){
 	fi
 }
 
+handle_ctrlc (){
+	tput rmcup
+	exit 2
+}
+
 install_configs(){
 	if [ "$ZSH_INSTALL" != " " ]; then
 		apply_dotfile "$ZSH_CONFIG" "$ZSH_PATH"
@@ -138,6 +143,9 @@ if [ "$TPUT" != "" ]; then
 	# save terminal state
 	tput smcup
 fi
+
+# handle signal 2 (SIGINT)
+trap "handle_ctrlc" 2
 
 ### Main entrypoint
 while true; do
