@@ -61,6 +61,12 @@ menu_entry =  "Neovim, using lazy.nvim"
 prompt_path =  "neovim"
 folder =  true
 
+[configs.fastfetch]
+install_path = "$HOME/.config/fastfetch/config.jsonc"
+source_config = "$PWD/configs/fastfetch/config.jsonc"
+menu_entry = "Fastfetch"
+prompt_path = "fastfetch"
+
 
 [notes]
 install_path = "$HOME/notes.txt"
