@@ -22,6 +22,10 @@ TMUX_INSTALL=" "
 TMUX_PATH="$HOME/.config/tmux/tmux.conf"
 TMUX_CONFIG="$PWD/configs/tmux/tmux.conf"
 
+MIDNIGHT_COMMANDER_INSTALL=" "
+MIDNIGHT_COMMANDER_PATH="$HOME/.config/mc"
+MIDNIGHT_COMMANDER_CONFIG="$PWD/configs/mc/"
+
 VIM_INSTALL=" "
 VIM_PATH="$HOME/.vimrc"
 VIM_CONFIG="$PWD/configs/vim/vimrc"
