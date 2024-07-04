@@ -35,6 +35,13 @@ source_config = "$PWD/configs/tmux/tmux.conf"
 menu_entry = "tmux"
 prompt_path = "tmux"
 
+[configs.midnight_commander]
+install_path = "$HOME/.config/mc"
+source_config = "$PWD/configs/mc/"
+menu_entry = "Midnight Commander"
+prompt_path = "mc"
+folder = true
+
 [configs.vim]
 install_path = "$HOME/.vimrc"
 source_config = "$PWD/configs/vim/vimrc"
