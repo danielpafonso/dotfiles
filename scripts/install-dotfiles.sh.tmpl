@@ -47,7 +47,7 @@ handle_ctrlc (){
 }
 
 install_configs(){
-	{{$INSTALL}}
+	{{INSTALL}}
 	if [ "$files" != "" ]; then
 		## local file
 		mkdir -p ./local
@@ -100,7 +100,7 @@ while true; do
 	printf "%s\n\n" "$banner"
 	## Menu
 	printf "Select components to install.\n"
-	{{$MENU}}
+	{{MENU}}
 	printf "%s\n" "$logLine"
 	#echo $logLine
 	logLine=" "
@@ -113,7 +113,7 @@ while true; do
 	read choice
 	## operate on choice
 	case $choice in
-		{{$CHOICE}}
+		{{CHOICE}}
 
 		"install") install_configs
 			break

@@ -76,7 +76,7 @@ def generate_install(configs: dict) -> None:
     # append remaining
     if line:
         menu.append(f'printf "  {" ".join(line)}\\n" {" ".join(args)}')
-    template = template.replace("{{$MENU}}", "\n\t".join(menu))
+    template = template.replace("{{MENU}}", "\n\t".join(menu))
 
     # generate choice
     choice = []
@@ -136,7 +136,7 @@ def generate_install(configs: dict) -> None:
         choice.append(toogle)
         i += 1
 
-    template = template.replace("{{$CHOICE}}", "\n\t\t".join(choice))
+    template = template.replace("{{CHOICE}}", "\n\t\t".join(choice))
 
     # Generate Install/apply dotfiles
     apply_template = """if [ "${0}_INSTALL" != " " ]; then
@@ -156,7 +156,7 @@ def generate_install(configs: dict) -> None:
     for key in configs["notes"]["parts"].keys():
         apply.append(apply_template.format(key.upper()))
 
-    template = template.replace("{{$INSTALL}}", "\n\t".join(apply))
+    template = template.replace("{{INSTALL}}", "\n\t".join(apply))
 
     # write template
     with open(OUTPUT_INSTALL, "w", encoding="utf8") as ofp:
