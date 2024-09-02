@@ -6,6 +6,10 @@ local keymap = vim.keymap -- for conciseness
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open [E]xplorer (Netrw)" })
+keymap.set("n", "<leader>re", ":Vexplore!<CR>", { desc = "Open [E]xplorer on [R]ight split (Netrw)" })
+keymap.set("n", "<leader>le", ":Vexplore<CR>", { desc = "Open [E]xplorer on [L]eft split (Netrw)" })
+keymap.set("n", "<leader>de", ":Hexplore<CR>", { desc = "Open [E]xplorer on [D]onw split (Netrw)" })
+keymap.set("n", "<leader>ue", ":Hexplore!<CR>", { desc = "Open [E]xplorer on [U]p split (Netrw)" })
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
