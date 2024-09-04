@@ -113,8 +113,125 @@ install_configs(){
 	fi
 }
 
+
+notes_sub_menu (){
+	while true; do
+		# clear terminal
+		clear
+		printf "%s\n\n" "$BANNER"
+		# sub menu
+		printf "Select Notes to copy.\n"
+		printf " 1) [%s] all notes\n" "$NOTES_ALL_INSTALL"
+		printf " 2) [%s] golang\n" "$NOTES_GOLANG"
+		printf " 3) [%s] git\n" "$NOTES_GIT"
+		printf " 4) [%s] process and ports\n" "$NOTES_PROCESS_PORT"
+		printf " 5) [%s] clouds\n" "$NOTES_CLOUD"
+		printf " 6) [%s] curl\n" "$NOTES_CURL"
+		printf " 7) [%s] regex\n" "$NOTES_REGEX"
+		printf " 8) [%s] terraform\n" "$NOTES_TERRAFORM"
+		printf " 0) return to menu\n"
+		printf "%s\n" "$logLine"
+		logLine=" "
+
+		if [ "$CREATE_SYMLINK" -eq 0 ]; then
+			printf "> "
+		else
+			printf "\e[1;36m> \e[m"
+		fi
+		read choice
+		## operate on choice
+		case $choice in
+			0) return
+				;;
+			1) if [ "$NOTES_ALL_INSTALL" = " " ]; then
+					NOTES_ALL_INSTALL="*"
+					NOTES_GOLANG="*"
+					NOTES_GIT="*"
+					NOTES_PROCESS_PORT="*"
+					NOTES_CLOUD="*"
+					NOTES_CURL="*"
+					NOTES_REGEX="*"
+					NOTES_TERRAFORM="*"
+				else
+					NOTES_ALL_INSTALL=" "
+					NOTES_GOLANG=" "
+					NOTES_GIT=" "
+					NOTES_PROCESS_PORT=" "
+					NOTES_CLOUD=" "
+					NOTES_CURL=" "
+					NOTES_REGEX=" "
+					NOTES_TERRAFORM=" "
+				fi
+				;;
+			2) NOTES_GOLANG=$([ "$NOTES_GOLANG" = "*" ] && echo " " || echo "*")
+				if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
+					NOTES_ALL_INSTALL="*"
+				elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
+					NOTES_ALL_INSTALL=" "
+				else
+					NOTES_ALL_INSTALL="-"
+				fi
+				;;
+			3) NOTES_GIT=$([ "$NOTES_GIT" = "*" ] && echo " " || echo "*")
+				if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
+					NOTES_ALL_INSTALL="*"
+				elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
+					NOTES_ALL_INSTALL=" "
+				else
+					NOTES_ALL_INSTALL="-"
+				fi
+				;;
+			4) NOTES_PROCESS_PORT=$([ "$NOTES_PROCESS_PORT" = "*" ] && echo " " || echo "*")
+				if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
+					NOTES_ALL_INSTALL="*"
+				elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
+					NOTES_ALL_INSTALL=" "
+				else
+					NOTES_ALL_INSTALL="-"
+				fi
+				;;
+			5) NOTES_CLOUD=$([ "$NOTES_CLOUD" = "*" ] && echo " " || echo "*")
+				if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
+					NOTES_ALL_INSTALL="*"
+				elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
+					NOTES_ALL_INSTALL=" "
+				else
+					NOTES_ALL_INSTALL="-"
+				fi
+				;;
+			6) NOTES_CURL=$([ "$NOTES_CURL" = "*" ] && echo " " || echo "*")
+				if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
+					NOTES_ALL_INSTALL="*"
+				elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
+					NOTES_ALL_INSTALL=" "
+				else
+					NOTES_ALL_INSTALL="-"
+				fi
+				;;
+			7) NOTES_REGEX=$([ "$NOTES_REGEX" = "*" ] && echo " " || echo "*")
+				if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
+					NOTES_ALL_INSTALL="*"
+				elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
+					NOTES_ALL_INSTALL=" "
+				else
+					NOTES_ALL_INSTALL="-"
+				fi
+				;;
+			8) NOTES_TERRAFORM=$([ "$NOTES_TERRAFORM" = "*" ] && echo " " || echo "*")
+				if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
+					NOTES_ALL_INSTALL="*"
+				elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
+					NOTES_ALL_INSTALL=" "
+				else
+					NOTES_ALL_INSTALL="-"
+				fi
+				;;
+		esac
+	done
+}
+
 ## Banner
-banner=$(cat << EOF
+BANNER=$(cat << EOF
   ___        _     __  _  _
  |   \  ___ | |_  / _|(_)| | ___
  | |) |/ _ \|  _||  _|| || |/ -_)
@@ -154,7 +271,7 @@ trap "handle_ctrlc" 2
 while true; do
 	# clear terminal
 	clear
-	printf "%s\n\n" "$banner"
+	printf "%s\n\n" "$BANNER"
 	## Menu
 	printf "Select components to install.\n"
 	printf " 1) [%s] zshrc file\n    path: %s\n" "$ZSH_INSTALL" "$ZSH_PATH"
@@ -169,11 +286,8 @@ while true; do
 	printf " 10) [%s] Neovim, using kickstart\n    path: %s\n" "$NVIM_KICKSTART_INSTALL" "$NVIM_KICKSTART_PATH"
 	printf " 11) [%s] Neovim, using lazy.nvim\n    path: %s\n" "$NVIM_LAZY_INSTALL" "$NVIM_LAZY_PATH"
 	printf " 12) [%s] Fastfetch\n    path: %s\n" "$FASTFETCH_INSTALL" "$FASTFETCH_PATH"
-	printf " 13) [%s] notes (all)\n    path: %s\n" "$NOTES_ALL_INSTALL" "$NOTES_PATH"
-	printf "  a) [%s] golang b) [%s] git c) [%s] process and ports d) [%s] clouds\n" "$NOTES_GOLANG" "$NOTES_GIT" "$NOTES_PROCESS_PORT" "$NOTES_CLOUD"
-	printf "  e) [%s] curl f) [%s] regex g) [%s] terraform\n" "$NOTES_CURL" "$NOTES_REGEX" "$NOTES_TERRAFORM"
+	printf " 13) [%s] notes (sub menu)\n    path: %s\n" "$NOTES_ALL_INSTALL" "$NOTES_PATH"
 	printf "%s\n" "$logLine"
-	#echo $logLine
 	logLine=" "
 
 	if [ "$CREATE_SYMLINK" -eq 0 ]; then
@@ -256,96 +370,11 @@ while true; do
 			printf "\n fastfetch path> "
 			read FASTFETCH_PATH
 			;;
-		13) if [ "$NOTES_ALL_INSTALL" = " " ]; then
-				NOTES_ALL_INSTALL="*"
-				NOTES_GOLANG="*"
-				NOTES_GIT="*"
-				NOTES_PROCESS_PORT="*"
-				NOTES_CLOUD="*"
-				NOTES_CURL="*"
-				NOTES_REGEX="*"
-				NOTES_TERRAFORM="*"
-			else
-				NOTES_ALL_INSTALL=" "
-				NOTES_GOLANG=" "
-				NOTES_GIT=" "
-				NOTES_PROCESS_PORT=" "
-				NOTES_CLOUD=" "
-				NOTES_CURL=" "
-				NOTES_REGEX=" "
-				NOTES_TERRAFORM=" "
-			fi
+		13) notes_sub_menu
 			;;
 		"path 13")
 			printf "\n notes path> "
 			read NOTES_PATH
-			;;
-		"13a") NOTES_GOLANG=$([ "$NOTES_GOLANG" = "*" ] &&echo " " || echo "*")
-			if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
-				NOTES_ALL_INSTALL="*"
-			elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
-				NOTES_ALL_INSTALL=" "
-			else
-				NOTES_ALL_INSTALL="-"
-			fi
-			;;
-		"13b") NOTES_GIT=$([ "$NOTES_GIT" = "*" ] &&echo " " || echo "*")
-			if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
-				NOTES_ALL_INSTALL="*"
-			elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
-				NOTES_ALL_INSTALL=" "
-			else
-				NOTES_ALL_INSTALL="-"
-			fi
-			;;
-		"13c") NOTES_PROCESS_PORT=$([ "$NOTES_PROCESS_PORT" = "*" ] &&echo " " || echo "*")
-			if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
-				NOTES_ALL_INSTALL="*"
-			elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
-				NOTES_ALL_INSTALL=" "
-			else
-				NOTES_ALL_INSTALL="-"
-			fi
-			;;
-		"13d") NOTES_CLOUD=$([ "$NOTES_CLOUD" = "*" ] &&echo " " || echo "*")
-			if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
-				NOTES_ALL_INSTALL="*"
-			elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
-				NOTES_ALL_INSTALL=" "
-			else
-				NOTES_ALL_INSTALL="-"
-			fi
-			;;
-		"13e") NOTES_CURL=$([ "$NOTES_CURL" = "*" ] &&echo " " || echo "*")
-			if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
-				NOTES_ALL_INSTALL="*"
-			elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
-				NOTES_ALL_INSTALL=" "
-			else
-				NOTES_ALL_INSTALL="-"
-			fi
-			;;
-		"13f") NOTES_REGEX=$([ "$NOTES_REGEX" = "*" ] &&echo " " || echo "*")
-			if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
-				NOTES_ALL_INSTALL="*"
-			elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
-				NOTES_ALL_INSTALL=" "
-			else
-				NOTES_ALL_INSTALL="-"
-			fi
-			;;
-		"13g") NOTES_TERRAFORM=$([ "$NOTES_TERRAFORM" = "*" ] &&echo " " || echo "*")
-			if [ "$NOTES_GOLANG" = "*" ] && [ "$NOTES_GIT" = "*" ] && [ "$NOTES_PROCESS_PORT" = "*" ] && [ "$NOTES_CLOUD" = "*" ] && [ "$NOTES_CURL" = "*" ] && [ "$NOTES_REGEX" = "*" ] && [ "$NOTES_TERRAFORM" = "*" ]; then
-				NOTES_ALL_INSTALL="*"
-			elif [ "$NOTES_GOLANG" = " " ] && [ "$NOTES_GIT" = " " ] && [ "$NOTES_PROCESS_PORT" = " " ] && [ "$NOTES_CLOUD" = " " ] && [ "$NOTES_CURL" = " " ] && [ "$NOTES_REGEX" = " " ] && [ "$NOTES_TERRAFORM" = " " ]; then
-				NOTES_ALL_INSTALL=" "
-			else
-				NOTES_ALL_INSTALL="-"
-			fi
-			;;
-
-		"install") install_configs
-			break
 			;;
 		"help"|"h")
 			logLine=$(printf "\n- Enter number to toogle config to install\n- Enter path folowed by rhe option number to modify the instalation path. ex: path 1\n ")

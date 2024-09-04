@@ -47,7 +47,17 @@ handle_ctrlc (){
 }
 
 install_configs(){
-	{{INSTALL}}
+	{{INSTALL_DOTFILES}}
+	if [ "${{key}}_INSTALL" != " " ]; then
+		apply_dotfile "${{key}}_CONFIG" "${{key}}_PATH" {{folder}}
+	fi
+	{{END}}
+	files=""
+	{{INSTALL_NOTES}}
+	if [ "$NOTES_{{key}}" != " " ]; then
+		files="${files} $NOTES_{{key}}_CONFIG"
+	fi
+	{{END}}
 	if [ "$files" != "" ]; then
 		## local file
 		mkdir -p ./local
@@ -56,8 +66,61 @@ install_configs(){
 	fi
 }
 
+
+notes_sub_menu (){
+	while true; do
+		# clear terminal
+		clear
+		printf "%s\n\n" "$BANNER"
+		# sub menu
+		printf "Select Notes to copy.\n"
+		printf " 1) [%s] all notes\n" "$NOTES_ALL_INSTALL"
+		{{SUB_MENU_NOTES}}
+		printf " {{idx}}) [%s] {{menu_entry}}\n" "$NOTES_{{key}}"
+		{{END}}
+		printf " 0) return to menu\n"
+		printf "%s\n" "$logLine"
+		logLine=" "
+		
+		if [ "$CREATE_SYMLINK" -eq 0 ]; then
+			printf "> "
+		else
+			printf "\e[1;36m> \e[m"
+		fi
+		read choice
+		## operate on choice
+		case $choice in
+			0) return
+				;;
+			1) if [ "$NOTES_ALL_INSTALL" = " " ]; then
+					NOTES_ALL_INSTALL="*"
+					{{CHOICE_NOTES_NEWLINE}}
+					NOTES_{{key}}="*"
+					{{END}}
+				else
+					NOTES_ALL_INSTALL=" "
+					{{CHOICE_NOTES_NEWLINE}}
+					NOTES_{{key}}=" "
+					{{END}}
+				fi
+				;;
+			{{CHOICE_SUB_MENU_NOTES}}
+			{{idx}}) NOTES_{{key}}=$([ "$NOTES_{{key}}" = "*" ] && echo " " || echo "*")
+				if {{CHOICE_NOTES_&&}}[ "$NOTES_{{key}}" = "*" ]{{END}}; then
+					NOTES_ALL_INSTALL="*"
+				elif {{CHOICE_NOTES_&&}}[ "$NOTES_{{key}}" = " " ]{{END}}; then
+					NOTES_ALL_INSTALL=" "
+				else
+					NOTES_ALL_INSTALL="-"
+				fi
+				;;
+			{{END}}
+		esac
+	done
+}
+
 ## Banner
-banner=$(cat << EOF
+BANNER=$(cat << EOF
   ___        _     __  _  _
  |   \  ___ | |_  / _|(_)| | ___
  | |) |/ _ \|  _||  _|| || |/ -_)
@@ -97,12 +160,16 @@ trap "handle_ctrlc" 2
 while true; do
 	# clear terminal
 	clear
-	printf "%s\n\n" "$banner"
+	printf "%s\n\n" "$BANNER"
 	## Menu
 	printf "Select components to install.\n"
-	{{MENU}}
+	{{MENU_DOTFILES}}
+	printf " {{idx}}) [%s] {{menu_entry}}\n    path: %s\n" "${{key}}_INSTALL" "${{key}}_PATH"
+	{{END}}
+	{{MENU_NOTES_ALL}}
+	printf " {{idx}}) [%s] {{menu_entry}} (sub menu)\n    path: %s\n" "$NOTES_ALL_INSTALL" "$NOTES_PATH"
+	{{END}}
 	printf "%s\n" "$logLine"
-	#echo $logLine
 	logLine=" "
 
 	if [ "$CREATE_SYMLINK" -eq 0 ]; then
@@ -113,11 +180,22 @@ while true; do
 	read choice
 	## operate on choice
 	case $choice in
-		{{CHOICE}}
-
-		"install") install_configs
-			break
+		{{CHOICE_DOTFILES}}
+		{{idx}}) {{key}}_INSTALL=$([ "${{key}}_INSTALL" = "*" ] && echo " " || echo "*")
 			;;
+		"path {{idx}}")
+			printf "\n {{prompt_path}} path> "
+			read {{key}}_PATH
+			;;
+		{{END}}
+		{{CHOICE_NOTES_IDX}} 
+		{{idx}}) notes_sub_menu
+			;;
+		"path {{idx}}")
+			printf "\n {{prompt_path}} path> "
+			read {{key}}_PATH
+			;;
+		{{END}}
 		"help"|"h")
 			logLine=$(printf "\n- Enter number to toogle config to install\n- Enter path folowed by rhe option number to modify the instalation path. ex: path 1\n ")
 			;;
