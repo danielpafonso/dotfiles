@@ -23,12 +23,13 @@ def extract_replace_loop(template: str, tag: str, count: int = -1) -> tuple:
 
     return "\n".join(template_lines), "\n".join(extract.split("\n")[1:-1])
 
+
 def extract_replace_inline(template: str, tag: str, count: int = -1) -> tuple:
     """Extract loop and replace with a tag"""
     start = template.find(tag)
     end = template.find("{{END}}", start)
     extract = template[start : end + 7]
-    return template.replace(extract, tag, count), extract[len(tag):-7]
+    return template.replace(extract, tag, count), extract[len(tag) : -7]
 
 
 def generate_variables(configs: dict) -> None:
@@ -141,8 +142,8 @@ def generate_install(configs: dict) -> None:
     template = template.replace(
         "{{CHOICE_NOTES_IDX}}",
         notes_all_tmpl.replace("{{idx}}", str(len(configs["configs"]) + 1))
-            .replace("{{key}}", "NOTES")
-            .replace("{{prompt_path}}", configs["notes"]["prompt_path"]),
+        .replace("{{key}}", "NOTES")
+        .replace("{{prompt_path}}", configs["notes"]["prompt_path"]),
     )
 
     ## Generate Notes Sub Menu
@@ -160,26 +161,33 @@ def generate_install(configs: dict) -> None:
 
     ## Generate Notes Sub Menu Choices
     while template.find("{{CHOICE_NOTES_NEWLINE}}") != -1:
-        template, submenu_choices = extract_replace_loop(template, "{{CHOICE_NOTES_NEWLINE}}", 1) 
+        template, submenu_choices = extract_replace_loop(
+            template, "{{CHOICE_NOTES_NEWLINE}}", 1
+        )
         choices = []
         for key in configs["notes"]["parts"].keys():
             choices.append(submenu_choices.replace("{{key}}", key.upper()))
         template = template.replace("{{CHOICE_NOTES_NEWLINE}}", "\n".join(choices), 1)
 
     while template.find("{{CHOICE_NOTES_&&}}") != -1:
-        template, submenu_choices = extract_replace_inline(template, "{{CHOICE_NOTES_&&}}", 1) 
+        template, submenu_choices = extract_replace_inline(
+            template, "{{CHOICE_NOTES_&&}}", 1
+        )
         choices = []
         for key in configs["notes"]["parts"].keys():
             choices.append(submenu_choices.replace("{{key}}", key.upper()))
         template = template.replace("{{CHOICE_NOTES_&&}}", " && ".join(choices), 1)
 
-    template, submenu_notes = extract_replace_loop(template, "{{CHOICE_SUB_MENU_NOTES}}")
+    template, submenu_notes = extract_replace_loop(
+        template, "{{CHOICE_SUB_MENU_NOTES}}"
+    )
     menu_configs = []
     for i, (key, values) in enumerate(configs["notes"]["parts"].items()):
         menu_configs.append(
             (
-                submenu_notes.replace("{{idx}}", str(i + 2))
-                .replace("{{key}}", key.upper())
+                submenu_notes.replace("{{idx}}", str(i + 2)).replace(
+                    "{{key}}", key.upper()
+                )
             )
         )
     template = template.replace("{{CHOICE_SUB_MENU_NOTES}}", "\n".join(menu_configs))
@@ -189,103 +197,6 @@ def generate_install(configs: dict) -> None:
         # remove trailing whitespaces
         for line in template.splitlines():
             ofp.write(f"{line.rstrip()}\n")
-
-    return
-    menu = []
-    num = 1
-    # Generate menu
-    for key, values in configs["configs"].items():
-        up_key = key.upper()
-        menu.append(
-            (
-                f'printf " {num}) [%s] {values["menu_entry"]}\\n    path: %s\\n" '
-                f'"${up_key}_INSTALL" "${up_key}_PATH"'
-            )
-        )
-        num += 1
-
-    menu.append(
-        (
-            f'printf " {num}) [%s] {configs["notes"]["menu_entry"]}\\n    path: %s\\n" '
-            '"$NOTES_ALL_INSTALL" "$NOTES_PATH"'
-        )
-    )
-    letters = "abcdefghijkmlnopqrstuvwxyz"
-    i = 0
-    line = []
-    args = []
-    for key, values in configs["notes"]["parts"].items():
-        line.append(f'{letters[i]}) [%s] {values["menu_entry"]}')
-        args.append(f'"$NOTES_{key.upper()}"')
-        if len(line) == 4:
-            menu.append(f'printf "  {" ".join(line)}\\n" {" ".join(args)}')
-            line = []
-            args = []
-        i += 1
-    # append remaining
-    if line:
-        menu.append(f'printf "  {" ".join(line)}\\n" {" ".join(args)}')
-    template = template.replace("{{MENU}}", "\n\t".join(menu))
-
-    # generate choice
-    choice = []
-    num = 1
-    for key, values in configs["configs"].items():
-        up_key = key.upper()
-        choice.append(
-            f'{num}) {up_key}_INSTALL=$([ "${up_key}_INSTALL" = "*" ] && echo " " || echo "*")'
-        )
-        choice.append("\t;;")
-        choice.append(f'"path {num}")')
-        choice.append(f'\tprintf "\\n {values["prompt_path"]} path> "')
-        choice.append(f"\tread {up_key}_PATH")
-        choice.append("\t;;")
-        num += 1
-
-    notes_choice = ["NOTES_ALL_INSTALL"] + [
-        f"NOTES_{key.upper()}" for key in configs["notes"]["parts"].keys()
-    ]
-    notes_choice = [f"NOTES_{key.upper()}" for key in configs["notes"]["parts"].keys()]
-
-    choice.append(f'{num}) if [ "$NOTES_ALL_INSTALL" = " " ]; then')
-    choice.append('\t\tNOTES_ALL_INSTALL="*"')
-    for notes in notes_choice:
-        choice.append(f'\t\t{notes}="*"')
-    choice.append("\telse")
-    choice.append('\t\tNOTES_ALL_INSTALL=" "')
-    for notes in notes_choice:
-        choice.append(f'\t\t{notes}=" "')
-    choice.append("\tfi")
-    choice.append("\t;;")
-    choice.append(f'"path {num}")')
-    choice.append(f"\tprintf \"\\n {configs['notes']['prompt_path']} path> \"")
-    choice.append("\tread NOTES_PATH")
-    choice.append("\t;;")
-
-    ## notes path
-    unselected = " && ".join([f'[ "${x.upper()}" = " " ]' for x in notes_choice])
-    selected = " && ".join([f'[ "${x.upper()}" = "*" ]' for x in notes_choice])
-    toogle = f"""\tif {selected}; then
-\t\t\t\tNOTES_ALL_INSTALL="*"
-\t\t\telif {unselected}; then
-\t\t\t\tNOTES_ALL_INSTALL=" "
-\t\t\telse
-\t\t\t\tNOTES_ALL_INSTALL="-"
-\t\t\tfi
-\t\t\t;;"""
-
-    i = 0
-    for key, values in configs["notes"]["parts"].items():
-        choice.append(
-            (
-                f'"{num}{letters[i]}") NOTES_{key.upper()}=$([ "$NOTES_{key.upper()}" = "*" ] &&'
-                'echo " " || echo "*")'
-            )
-        )
-        choice.append(toogle)
-        i += 1
-
-    template = template.replace("{{CHOICE}}", "\n\t\t".join(choice))
 
 
 if __name__ == "__main__":
