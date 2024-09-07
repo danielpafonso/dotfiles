@@ -376,6 +376,9 @@ while true; do
 			printf "\n notes path> "
 			read NOTES_PATH
 			;;
+		"install") install_configs
+			break
+			;;
 		"help"|"h")
 			logLine=$(printf "\n- Enter number to toogle config to install\n- Enter path folowed by rhe option number to modify the instalation path. ex: path 1\n ")
 			;;
