@@ -7,8 +7,11 @@ return {
         theme = "auto",
         component_separators = "|",
       },
+      sections = {
+        lualine_c = {{ "filename", path = 1 }}
+      },
       inactive_sections = {
-        lualine_a = {"filename"},
+        lualine_a = {{ "filename", path = 1 }},
         lualine_c = {"filesize"},
         lualine_x = {},
       },
