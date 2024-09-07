@@ -48,3 +48,6 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- Decrease update time
 opt.updatetime = 250
 opt.timeoutlen = 300
+
+-- Number of lines offscreen to keep above and bellow cursor
+opt.scrolloff = 5
