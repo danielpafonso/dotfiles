@@ -23,4 +23,14 @@ return {
     end,
     --]]
   },
+  {
+    "folke/tokyonight.nvim",
+    name = "theme.tokyonight",
+    --[[
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme "tokyonight-storm"
+    end
+    ]]--
+  }
 }
