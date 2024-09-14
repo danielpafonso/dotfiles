@@ -2,8 +2,8 @@ return {
   {
     -- Theme inspired by Atom
     "navarasu/onedark.nvim",
-	name = "onedark.theme",
-	-- uncomment for default
+    name = "theme.onedark",
+    -- uncomment for default
     priority = 1000,
     config = function()
       require("onedark").setup{
@@ -14,11 +14,13 @@ return {
   },
   {
     "catppuccin/nvim",
-	name = "catppuccin.theme",
-	--[[
+    name = "theme.catppuccin",
+    --[[
+    -- uncomment for default
+    priority = 1000,
     config = function()
       vim.cmd.colorscheme "catppuccin-macchiato"
     end,
-	--]]
+    --]]
   },
 }
