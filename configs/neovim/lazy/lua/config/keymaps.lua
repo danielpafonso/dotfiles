@@ -28,7 +28,7 @@ keymap.set("n", "<leader>tt", "<cmd>tabnew | term<CR>", { desc = "Open terminal 
 -- Terminal management when in <termianl> mode
 keymap.set("t", "<A-x>", "<cmd>tabclose<CR>", { desc = "Close terminal tab" })
 keymap.set("t", "<A-n>", "<cmd>tabn<CR>", { desc = "Go to next tab" })
-keymap.set("t", "<A-p>", "<cmd>tabp<CR>", { desc = "Go to previous tab" }
+keymap.set("t", "<A-p>", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 
 -- Diagnostics -> errors and warnings
 keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show line diagnostics" }) -- show diagnostics for line
