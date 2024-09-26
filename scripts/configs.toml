@@ -54,13 +54,6 @@ source_config = "$PWD/configs/neovim/vim-plug/init.vim"
 menu_entry = "Neovim, using vim-plug"
 prompt_path = "neovim"
 
-[configs.nvim_kickstart]
-install_path = "$HOME/.config/nvim"
-source_config = "$PWD/configs/neovim/kickstart"
-menu_entry = "Neovim, using kickstart"
-prompt_path = "neovim"
-folder = true
-
 [configs.nvim_lazy]
 install_path = "$HOME/.config/lazy-nvim"
 source_config = "$PWD/configs/neovim/lazy"
@@ -101,3 +94,6 @@ regex.menu_entry = "regex"
 
 terraform.install_path = "$PWD/configs/notes/terraform.txt"
 terraform.menu_entry = "terraform"
+
+lazy_nvim.install_path = "$PWD/configs/notes/lazy-nvim.txt"
+lazy_nvim.menu_entry = "lazy-nvim"
