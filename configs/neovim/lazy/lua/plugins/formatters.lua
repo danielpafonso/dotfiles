@@ -17,6 +17,11 @@ return {
         async = false,
         timeout_ms = 1000,
       },
+      formatters = {
+        prettier = {
+          prepend_args = { "--tab-width", "2" },
+        },
+      },
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()

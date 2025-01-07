@@ -19,7 +19,8 @@ return {
 
     telescope.setup({
       defaults = {
-        path_display = { "smart" },
+        --path_display = { "smart" },
+        path_display = { "truncate" },
         mappings = {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
