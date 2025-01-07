@@ -3,6 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp", -- integrate autocomplete with lsp servers
+    "nvim-lua/plenary.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
