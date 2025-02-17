@@ -15,14 +15,14 @@ return {
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
-	  local builtin = require('telescope.builtin')
+    local builtin = require('telescope.builtin')
 
     telescope.setup({
       defaults = {
         --path_display = { "smart" },
         path_display = { "truncate" },
         file_ignore_patterns = {
-          ".git/",
+          "%.git/",
         },
         mappings = {
           i = {
@@ -36,7 +36,6 @@ return {
     telescope.load_extension("fzf")
 
     -- set keymaps
-    --vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "[F]uzzy [f]ind files in cwd" })
     vim.keymap.set("n", "<leader>ff", function() builtin.find_files({ hidden = true,  no_ignore = true }) end, { desc = "[F]uzzy [f]ind files in cwd" })
     vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
     vim.keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "[F]uzzy find [s]tring in cwd" })
@@ -54,8 +53,8 @@ return {
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
 
-	require("which-key").add({
-		{"<leader>f", group = "[F]uzzy finder"}
-	})
+    require("which-key").add({
+            {"<leader>f", group = "[F]uzzy finder"}
+    })
   end,
 }
