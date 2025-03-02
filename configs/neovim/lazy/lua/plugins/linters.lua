@@ -18,8 +18,8 @@ return {
     })
 
     -- set pylint to work in virual environments
-    lint.linters.pylint.cmd = "python3"
-    lint.linters.pylint.args = { "-m", "pylint", "-f", "json" }
+    -- lint.linters.pylint.cmd = "python3"
+    -- lint.linters.pylint.args = { "-m", "pylint", "-f", "json" }
 
     vim.keymap.set("n", "<leader>l", function()
       lint.try_lint()

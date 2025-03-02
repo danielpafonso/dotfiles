@@ -40,6 +40,8 @@ return {
     vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
     vim.keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "[F]uzzy find [s]tring in cwd" })
     vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "[F]uzzy find string under [c]ursor in cwd" })
+    vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<cr>", { desc = "[F]uzzy find buffers [m]arks" })
+    vim.keymap.set("n", "<leader>fd", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "[F]uzzy find LSP [d]ocument symbols" })
  
     vim.keymap.set("n", "<leader>ft", function()
       builtin.colorscheme({ enable_preview = true, ignore_builtins = true })

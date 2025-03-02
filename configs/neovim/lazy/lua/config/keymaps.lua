@@ -4,6 +4,7 @@ vim.g.maplocalleader = " " -- Same for `maplocalleader`
 
 local keymap = vim.keymap -- for conciseness
 
+-- File Explorer
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open [E]xplorer (Netrw)" })
 keymap.set("n", "<leader>re", ":Vexplore!<CR>", { desc = "Open [E]xplorer on [R]ight split (Netrw)" })
@@ -11,7 +12,7 @@ keymap.set("n", "<leader>le", ":Vexplore<CR>", { desc = "Open [E]xplorer on [L]e
 keymap.set("n", "<leader>de", ":Hexplore<CR>", { desc = "Open [E]xplorer on [D]own split (Netrw)" })
 keymap.set("n", "<leader>ue", ":Hexplore!<CR>", { desc = "Open [E]xplorer on [U]p split (Netrw)" })
 
--- window management
+-- Window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
@@ -39,3 +40,7 @@ keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic"
 keymap.set("n", "<leader>yr", ":let @+ = expand(\"%\")<CR>", { desc = "[Y]ank [r]elative file path" })
 keymap.set("n", "<leader>yp", ":let @+ = expand(\"%:p\")<CR>", { desc = "[Y]ank full file [p]ath" })
 keymap.set("n", "<leader>yf", ":let @+ = expand(\"%:t\")<CR>", { desc = "[Y]ank [f]ile name" })
+
+-- Buffer navigation
+keymap.set("n", "<C-d>", "<C-d>zz")
+keymap.set("n", "<C-u>", "<C-u>zz")

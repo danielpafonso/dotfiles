@@ -16,6 +16,14 @@ return {
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+
+    -- load custom snippets
+    luasnip.add_snippets("go", require("snippets.go"))
+
+    -- luasnip.setup({
+    --   enable_autosnippets = true,
+    -- })
+
     cmp.setup({
       completion = {
         completeopt = "menu,menuone,preview,noselect",
