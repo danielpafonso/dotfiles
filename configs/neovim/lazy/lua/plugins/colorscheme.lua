@@ -1,37 +1,36 @@
+local defaultTheme = "catppuccin"
+
 return {
   {
     -- Theme inspired by Atom
     "navarasu/onedark.nvim",
     name = "theme.onedark",
-    -- uncomment for default
-	--[[
-    priority = 1000,
     config = function()
       require("onedark").setup{
         style = "warm"
       }
-      vim.cmd.colorscheme "onedark"
+      if defaultTheme == "onedark" then
+	vim.cmd.colorscheme "onedark"
+      end
     end,
-	--]]
   },
   {
     "catppuccin/nvim",
     name = "theme.catppuccin",
-    -- uncomment for default
-    priority = 1000,
     config = function()
+      if defaultTheme == "catppuccin" then
+	vim.cmd.colorscheme "catppuccin-frappe"
       -- vim.cmd.colorscheme "catppuccin-macchiato"
-      vim.cmd.colorscheme "catppuccin-frappe"
+      end
     end,
   },
   {
     "folke/tokyonight.nvim",
     name = "theme.tokyonight",
-    --[[
-    priority = 1000,
     config = function()
-      vim.cmd.colorscheme "tokyonight-storm"
+      if defaultTheme == "tokyonight" then
+	vim.cmd.colorscheme "tokyonight-storm"
+      end
     end
-    ]]--
   }
 }
