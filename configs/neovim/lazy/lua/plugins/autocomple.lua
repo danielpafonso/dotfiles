@@ -18,7 +18,9 @@ return {
     local luasnip = require("luasnip")
 
     -- load custom snippets
+    -- luasnip.add_snippets("<filetype>", require("<folder>.<filename w/ ext>"))
     luasnip.add_snippets("go", require("snippets.go"))
+    luasnip.add_snippets("terraform", require("snippets.terraform"))
 
     -- luasnip.setup({
     --   enable_autosnippets = true,
@@ -41,6 +43,24 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion window
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
