@@ -44,3 +44,6 @@ keymap.set("n", "<leader>yf", ":let @+ = expand(\"%:t\")<CR>", { desc = "[Y]ank 
 -- Buffer navigation
 keymap.set("n", "<C-d>", "<C-d>zz")
 keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- Toogle word wraping
+keymap.set("n", "<leader>w", ":set wrap!<CR>", { desc = "Toogle word [w]wraping" })
