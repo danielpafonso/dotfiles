@@ -42,7 +42,7 @@ return {
         "isort", -- python formatter
         "black", -- python formatter
         -- Linters
-        -- "pylint",
+        "pylint",
       },
     })
   end
