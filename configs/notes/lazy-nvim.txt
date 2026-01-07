@@ -3,3 +3,6 @@ To uninstall lazy.nvim, you need to remove the following files and directories:
     state: ~/.local/state/nvim/lazy
     lockfile: ~/.config/nvim/lazy-lock.json
 
+## vim/neovim
+Disable write to backup file to enable docker volume updates
+    :set nowritebackup
