@@ -21,6 +21,7 @@ return {
     -- luasnip.add_snippets("<filetype>", require("<folder>.<filename w/ ext>"))
     luasnip.add_snippets("go", require("snippets.go"))
     luasnip.add_snippets("terraform", require("snippets.terraform"))
+    luasnip.add_snippets("rust", require("snippets.rust"))
 
     -- luasnip.setup({
     --   enable_autosnippets = true,
