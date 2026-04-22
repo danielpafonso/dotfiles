@@ -77,6 +77,9 @@ install_configs(){
 	if [ "$NVIM_LAZY_INSTALL" != " " ]; then
 		apply_dotfile "$NVIM_LAZY_CONFIG" "$NVIM_LAZY_PATH" folder
 	fi
+	if [ "$NVIM_PACK_INSTALL" != " " ]; then
+		apply_dotfile "$NVIM_PACK_CONFIG" "$NVIM_PACK_PATH"
+	fi
 	if [ "$FASTFETCH_INSTALL" != " " ]; then
 		apply_dotfile "$FASTFETCH_CONFIG" "$FASTFETCH_PATH"
 	fi
@@ -296,8 +299,9 @@ while true; do
 	printf " 8) [%s] vim\n    path: %s\n" "$VIM_INSTALL" "$VIM_PATH"
 	printf " 9) [%s] Neovim, using vim-plug\n    path: %s\n" "$NVIM_INSTALL" "$NVIM_PATH"
 	printf " 10) [%s] Neovim, using lazy.nvim\n    path: %s\n" "$NVIM_LAZY_INSTALL" "$NVIM_LAZY_PATH"
-	printf " 11) [%s] Fastfetch\n    path: %s\n" "$FASTFETCH_INSTALL" "$FASTFETCH_PATH"
-	printf " 12) [%s] notes (sub menu)\n    path: %s\n" "$NOTES_ALL_INSTALL" "$NOTES_PATH"
+	printf " 11) [%s] Neovim 12+, using pack\n    path: %s\n" "$NVIM_PACK_INSTALL" "$NVIM_PACK_PATH"
+	printf " 12) [%s] Fastfetch\n    path: %s\n" "$FASTFETCH_INSTALL" "$FASTFETCH_PATH"
+	printf " 13) [%s] notes (sub menu)\n    path: %s\n" "$NOTES_ALL_INSTALL" "$NOTES_PATH"
 	printf "%s\n" "$logLine"
 	logLine=" "
 
@@ -369,15 +373,21 @@ while true; do
 			printf "\n neovim path> "
 			read NVIM_LAZY_PATH
 			;;
-		11) FASTFETCH_INSTALL=$([ "$FASTFETCH_INSTALL" = "*" ] && echo " " || echo "*")
+		11) NVIM_PACK_INSTALL=$([ "$NVIM_PACK_INSTALL" = "*" ] && echo " " || echo "*")
 			;;
 		"path 11")
+			printf "\n neovim path> "
+			read NVIM_PACK_PATH
+			;;
+		12) FASTFETCH_INSTALL=$([ "$FASTFETCH_INSTALL" = "*" ] && echo " " || echo "*")
+			;;
+		"path 12")
 			printf "\n fastfetch path> "
 			read FASTFETCH_PATH
 			;;
-		12) notes_sub_menu
+		13) notes_sub_menu
 			;;
-		"path 12")
+		"path 13")
 			printf "\n notes path> "
 			read NOTES_PATH
 			;;
