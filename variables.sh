@@ -39,8 +39,8 @@ NVIM_LAZY_PATH="$HOME/.config/lazy-nvim"
 NVIM_LAZY_CONFIG="$PWD/configs/neovim/lazy"
 
 NVIM_PACK_INSTALL=" "
-NVIM_PACK_PATH="$HOME/.config/nvim/init.lua"
-NVIM_PACK_CONFIG="$PWD/configs/neovim/pack-12+/init.lua"
+NVIM_PACK_PATH="$HOME/.config/nvim"
+NVIM_PACK_CONFIG="$PWD/configs/neovim/pack-12+"
 
 FASTFETCH_INSTALL=" "
 FASTFETCH_PATH="$HOME/.config/fastfetch/config.jsonc"

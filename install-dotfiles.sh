@@ -78,7 +78,7 @@ install_configs(){
 		apply_dotfile "$NVIM_LAZY_CONFIG" "$NVIM_LAZY_PATH" folder
 	fi
 	if [ "$NVIM_PACK_INSTALL" != " " ]; then
-		apply_dotfile "$NVIM_PACK_CONFIG" "$NVIM_PACK_PATH"
+		apply_dotfile "$NVIM_PACK_CONFIG" "$NVIM_PACK_PATH" folder
 	fi
 	if [ "$FASTFETCH_INSTALL" != " " ]; then
 		apply_dotfile "$FASTFETCH_CONFIG" "$FASTFETCH_PATH"
