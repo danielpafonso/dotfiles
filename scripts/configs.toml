@@ -62,10 +62,11 @@ prompt_path =  "neovim"
 folder =  true
 
 [configs.nvim_pack]
-install_path = "$HOME/.config/nvim/init.lua"
-source_config = "$PWD/configs/neovim/pack-12+/init.lua"
+install_path = "$HOME/.config/nvim"
+source_config = "$PWD/configs/neovim/pack-12+"
 menu_entry = "Neovim 12+, using pack"
 prompt_path = "neovim"
+folder =  true
 
 [configs.fastfetch]
 install_path = "$HOME/.config/fastfetch/config.jsonc"
