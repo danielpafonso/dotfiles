@@ -1,16 +1,28 @@
 -----  Plugins  ------
--- comment lines and blocks
-vim.pack.add({"https://github.com/numToStr/Comment.nvim"})
 
--- Detect tabstop and shiftwidth automatically
-vim.pack.add({"https://github.com/tpope/vim-sleuth"})
 
--- Color Theme
-vim.pack.add({{src = "https://github.com/catppuccin/nvim", name = "catppuccin"}})
--- vim.pack.add({"https://github.com/navarasu/onedark.nvim"})
+vim.pack.add({
+  -- comment lines and blocks
+  { src = "https://github.com/numToStr/Comment.nvim" },
 
--- Status line
-vim.pack.add({"https://github.com/nvim-lualine/lualine.nvim"})
+  -- Detect tabstop and shiftwidth automatically
+  { src = "https://github.com/tpope/vim-sleuth" },
+
+  -- Color Themes
+  { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+  -- { src = "https://github.com/navarasu/onedark.nvim" },
+
+  -- Status line
+  { src = "https://github.com/nvim-lualine/lualine.nvim" },
+
+  -- Fuzzy finder
+  -- { src = "https://github.com/nvim-tree/nvim-web-devicons" }, -- option dependency for fzf-lua
+  { src = "https://github.com/ibhagwan/fzf-lua" }
+})
+
+
+-----  Plugins configs  ------
+
 require("lualine").setup({
   options = {
    icons_enabled = true,
@@ -28,11 +40,6 @@ require("lualine").setup({
   }
 })
 
--- Fuzzy finder
-vim.pack.add(
-  -- {"https://github.com/nvim-tree/nvim-web-devicons"},
-  {"https://github.com/ibhagwan/fzf-lua"}
-)
 require("fzf-lua").setup({
   fzf_colors = true,
   fzf_opts = {
