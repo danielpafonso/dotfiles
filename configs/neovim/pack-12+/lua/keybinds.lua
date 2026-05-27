@@ -27,3 +27,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Toogle word wraping
 vim.keymap.set("n", "<leader>w", ":set wrap!<CR>", { desc = "Toogle word [w]wraping" })
+
+-- build in undotree
+vim.keymap.set("n", "<leader>ut", function()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
+end, {desc = "Toogle [U]ndo[tree]"})

@@ -1,16 +1,13 @@
 -----  Plugins  ------
 
-
 vim.pack.add({
-  -- comment lines and blocks
-  { src = "https://github.com/numToStr/Comment.nvim" },
-
   -- Detect tabstop and shiftwidth automatically
   { src = "https://github.com/tpope/vim-sleuth" },
 
   -- Color Themes
-  { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
-  -- { src = "https://github.com/navarasu/onedark.nvim" },
+  -- { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+  -- { src = "https://github.com/navarasu/onedark.nvim", name = "onedark" },
+  { src = "https://github.com/nordtheme/vim", name = "nordtheme" },
 
   -- Status line
   { src = "https://github.com/nvim-lualine/lualine.nvim" },
@@ -22,6 +19,13 @@ vim.pack.add({
 
 
 -----  Plugins configs  ------
+
+-- require("onedark").setup {
+--   style = "warm"
+-- }
+-- require("onedark").load()
+-- vim.cmd.colorscheme "catppuccin-frappe"
+vim.cmd.colorscheme "nord"
 
 require("lualine").setup({
   options = {

@@ -1,6 +1,4 @@
 ------  Configs  ------
-vim.cmd.colorscheme "catppuccin-frappe"
-
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.wrap = false
@@ -32,3 +30,7 @@ vim.opt.scrolloff = 5
 
 -- set netrw style to tree, use key "i" to change
 vim.cmd("let g:netrw_liststyle = 3")
+
+-- completion
+vim.o.autocomplete = true
+vim.opt.completeopt = { "menuone", "noselect"}
