@@ -47,3 +47,14 @@ keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Toogle word wraping
 keymap.set("n", "<leader>w", ":set wrap!<CR>", { desc = "Toogle word [w]wraping" })
+
+-- Toogle "zenmode"
+keymap.set("n", "<leader>zt", function()
+  if vim.wo.signcolumn == "yes" then
+    vim.wo.signcolumn = "yes:9"
+    vim.wo.foldcolumn = "9"
+  else
+    vim.wo.signcolumn = "yes"
+    vim.wo.foldcolumn = "0"
+  end
+end, { desc = "" })
