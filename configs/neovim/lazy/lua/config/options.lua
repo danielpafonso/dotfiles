@@ -4,50 +4,50 @@ vim.cmd("let g:netrw_liststyle = 3")
 -- set color column on 100 for python files
 vim.cmd("autocmd FileType python set cc=100")
 
--- for conciseness
-local opt = vim.opt
-
-opt.relativenumber = true
-opt.number = true
-opt.wrap = false
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.wrap = false
 
 -- Enable mouse mode
-opt.mouse = 'a'
+vim.opt.mouse = 'a'
 
 -- Save undo history
-opt.undofile = true
+vim.opt.undofile = true
 
 -- Set completeopt to have a better completion experience
-opt.completeopt = 'menuone,noselect'
-opt.termguicolors = true
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+vim.opt.completeopt = 'menuone,noselect'
+vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 -- tabs & indentation
-opt.tabstop = 4 -- spaces for tabs (prettier default)
-opt.shiftwidth = 4 -- spaces for indent width
-opt.expandtab = false -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+vim.opt.tabstop = 4 -- spaces for tabs (prettier default)
+vim.opt.shiftwidth = 4 -- spaces for indent width
+vim.opt.expandtab = false -- expand tab to spaces
+vim.opt.autoindent = true -- copy indent from current line when starting new one
 
 -- search settings
-opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+vim.opt.ignorecase = true -- ignore case when searching
+vim.opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
 -- backspace
 --opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
 -- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
 -- split windows
-opt.splitright = true -- split vertical window to the right
-opt.splitbelow = true -- split horizontal window to the bottom
+vim.opt.splitright = true -- split vertical window to the right
+vim.opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 --opt.swapfile = false
 
 -- Decrease update time
-opt.updatetime = 250
-opt.timeoutlen = 300
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
 -- Number of lines offscreen to keep above and bellow cursor
-opt.scrolloff = 5
+vim.opt.scrolloff = 5
+
+-- add float to diagnostic jumps
+vim.diagnostic.config({ jump = { float = true }})

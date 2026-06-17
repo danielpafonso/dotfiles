@@ -33,8 +33,6 @@ keymap.set("t", "<A-p>", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 
 -- Diagnostics -> errors and warnings
 keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show line diagnostics" }) -- show diagnostics for line
-keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" }) -- jump to previous diagnostic in buffer
-keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" }) -- jump to next diagnostic in buffer
 
 -- File yanking
 keymap.set("n", "<leader>yr", ":let @+ = expand(\"%\")<CR>", { desc = "[Y]ank [r]elative file path" })
