@@ -13,6 +13,7 @@ vim.opt.undofile = true
 vim.opt.tabstop = 4 -- spaces for tabs (prettier default)
 vim.opt.shiftwidth = 4 -- spaces for indent width
 vim.opt.expandtab = false -- expand tab to spaces
+vim.opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 -- search settings
 vim.opt.ignorecase = true -- ignore case when searching
@@ -34,3 +35,6 @@ vim.cmd("let g:netrw_liststyle = 3")
 -- completion
 vim.o.autocomplete = true
 vim.opt.completeopt = { "menuone", "noselect"}
+
+-- add float to diagnostic jumps
+vim.diagnostic.config({ jump = { float = true }})
