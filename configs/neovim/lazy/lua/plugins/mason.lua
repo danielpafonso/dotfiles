@@ -29,9 +29,10 @@ return {
         "tailwindcss",
         --]]
         -- "lua_ls"
-        "terraformls",
         "gopls",
         "pyright",
+        "rust_analyzer",
+        "terraformls",
       },
     })
     
