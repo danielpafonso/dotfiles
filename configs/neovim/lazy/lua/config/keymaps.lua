@@ -55,4 +55,11 @@ keymap.set("n", "<leader>zt", function()
     vim.wo.signcolumn = "yes"
     vim.wo.foldcolumn = "0"
   end
-end, { desc = "" })
+end, { desc = "Toggle zen mode" })
+
+-- build in undotree
+vim.keymap.set("n", "<leader>ut", function()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
+end, {desc = "Toogle [U]ndo [t]ree"})
+
